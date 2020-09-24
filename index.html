@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>Work Day taskuler</title>
+</head>
+
+<body>
+  <header class="jumbotron">
+    <h1 class="display-3">Work Day taskuler</h1>
+    <p class="lead">A simple calendar app for taskuling your work day</p>
+    <p id="currentDay" class="lead"></p>
+  </header>
+  <div class="container">
+    <div id="hour-9" class="row time-block">
+      <div class="col-md-1 hour">
+        9AM
+      </div>
+      <textarea class="col-md-10 timeFrame">
+      </textarea>
+      <button class="btn saveBtn col-md-1"><i class="fas fa-save"></i></button>
+    </div>
+    <div id="hour-10" class="row time-block">
+      <div class="col-md-1 hour">
+        10AM
+      </div>
+      <textarea class="col-md-10 timeFrame">
+      </textarea>
+      <button class="btn saveBtn col-md-1"><i class="fas fa-save"></i></button>
+    </div>
+    <div id="hour-11" class="row time-block">
+      <div class="col-md-1 hour">
+        11AM
+      </div>
+      <textarea class="col-md-10 timeFrame">
+      </textarea>
+      <button class="btn saveBtn col-md-1"><i class="fas fa-save"></i></button>
+    </div>
+    <div id="hour-12" class="row time-block">
+      <div class="col-md-1 hour">
+        12PM
+      </div>
+      <textarea class="col-md-10 timeFrame">
+      </textarea>
+      <button class="btn saveBtn col-md-1"><i class="fas fa-save"></i></button>
+    </div>
+    <div id="hour-13" class="row time-block">
+      <div class="col-md-1 hour">
+        1PM
+      </div>
+      <textarea class="col-md-10 timeFrame">
+      </textarea>
+      <button class="btn saveBtn col-md-1"><i class="fas fa-save"></i></button>
+    </div>
+    <div id="hour-14" class="row time-block">
+      <div class="col-md-1 hour">
+        2PM
+      </div>
+      <textarea class="col-md-10 timeFrame">
+      </textarea>
+      <button class="btn saveBtn col-md-1"><i class="fas fa-save"></i></button>
+    </div>
+    <div id="hour-15" class="row time-block">
+      <div class="col-md-1 hour">
+        3PM
+      </div>
+      <textarea class="col-md-10 timeFrame">
+      </textarea>
+      <button class="btn saveBtn col-md-1"><i class="fas fa-save"></i></button>
+    </div>
+    <div id="hour-16" class="row time-block">
+      <div class="col-md-1 hour">
+        4PM
+      </div>
+      <textarea class="col-md-10 timeFrame">
+      </textarea>
+      <button class="btn saveBtn col-md-1"><i class="fas fa-save"></i></button>
+    </div>
+    <div id="hour-17" class="row time-block">
+      <div class="col-md-1 hour">
+        5PM
+      </div>
+      <textarea class="col-md-10 timeFrame">
+      </textarea>
+      <button class="btn saveBtn col-md-1"><i class="fas fa-save"></i></button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+
+        //create variables
+       var hour = ["9", "10", "11", "12", "13", "14", "15", "16", "17"]
+
+        // //display current date
+        function currentDate() {
+          var currentDate = moment().format('MMMM Do YYYY, h:mm:ss a');
+          $("#currentDay").text(currentDate);
+        }
+        //load current date
+        currentDate();
+
+        // saveBtn && log tasks for day
+        $(".saveBtn").on("click", function (event){
+          event.preventDefault();
+          var hours = $(this).parent().attr("id");
+          var tasks = $(this).siblings(".timeFrame").val();
+          
+        
+        $("#9am").children(".timeframe").val(JSON.parse(localStorage.getItem("9am")));
+
+        $("#10am").children(".timeFrame").val(JSON.parse(localStorage.getItem("10am")));
+
+        $("#11am").children(".timeFrame").val(JSON.parse(localStorage.getItem("11am")));
+
+        $("#12pm").children(".timeFrame").val(JSON.parse(localStorage.getItem("12pm")));
+
+        $("#1pm").children(".timeFrame").val(JSON.parse(localStorage.getItem("1pm")));
+
+        $("#2pm").children(".timeFrame").val(JSON.parse(localStorage.getItem("2pm")));
+
+        $("#3pm").children(".timeFrame").val(JSON.parse(localStorage.getItem("3pm")));
+
+        $("#4pm").children(".timeFrame").val(JSON.parse(localStorage.getItem("4pm")));
+
+        $("#5pm").children(".timeFrame").val(JSON.parse(localStorage.getItem("5pm")));
+
+        JSON.stringify(localStorage.setItem(hours, tasks));
+        console.log(hours, tasks);
+       $(".timeframe").append(tasks);
+        });
+      
+
+       //current time && class attr
+        var currentTime = moment().format("HH");
+       
+        //set class hour 9
+        if (currentTime === 9) {
+          $("#hour-9").addClass("present");
+        }
+        else if (currentTime < 9) {
+          $("#hour-9").addClass("future");
+        }
+        else {
+          $("#hour-9").addClass("past");
+        }
+        // set class hour 10
+        if (currentTime === 10) {
+          $("#hour-10").addClass("present");
+        }
+        else if (currentTime < 10) {
+          $("#hour-10").addClass("future");
+        }
+        else {
+          $("#hour-10").addClass("past");
+        }
+        //set class hour 11
+        if (currentTime === 11) {
+          $("#hour-11").addClass("present");
+        }
+        else if (currentTime < 11) {
+          $("#hour-11").addClass("future");
+        }
+        else {
+          $("#hour-11").addClass("past");
+        }
+        //set class hour 12
+        if (currentTime === 12) {
+          $("#hour-12").addClass("present");
+        }
+        else if (currentTime < 12) {
+          $("#hour-12").addClass("future");
+        }
+        else {
+          $("#hour-12").addClass("past");
+        }
+        //set class hour 13
+        if (currentTime === 13) {
+          $("#hour-13").addClass("present");
+        }
+        else if (currentTime < 13) {
+          $("#hour-13").addClass("future");
+        }
+        else {
+          $("#hour-13").addClass("past");
+        }
+        //set class hour 14
+        if (currentTime === 14) {
+          $("#hour-14").addClass("present");
+        }
+        else if (currentTime < 14) {
+          $("#hour-14").addClass("future");
+        }
+        else {
+          $("#hour-14").addClass("past");
+        }
+        //set class hour 15
+        if (currentTime === 15) {
+          $("#hour-15").addClass("present");
+        }
+        else if (currentTime < 15) {
+          $("#hour-15").addClass("future");
+        }
+        else {
+          $("#hour-15").addClass("past");
+        }
+        //set class hour 16
+        if (currentTime === 16) {
+          $("#hour-16").addClass("present");
+        }
+        else if (currentTime < 16) {
+          $("#hour-16").addClass("future");
+        }
+        else {
+          $("#hour-16").addClass("past");
+        }
+        //set class hour 17
+        if (currentTime === 17) {
+          $("#hour-17").addClass("present");
+        }
+        else if (currentTime < 17) {
+          $("#hour-17").addClass("future");
+        }
+        else {
+          $("#hour-17").addClass("past");
+        }
+        });
+              
+      
+      
+
+
+    </script>
+
+</body>
+
+</html>

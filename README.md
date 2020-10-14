@@ -1,7 +1,8 @@
 # DayPlanner
 
 ##Description
-DayPlanner is an hhourly workday planner to save your tasks throughout your current workday.
+Hourly workday planner to save your tasks throughout your current workday.
+Past, current and future hours indicated by color for user convienence.
 
 ##Images
 
